@@ -1,11 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Buy cool new product</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
+    <meta charset="utf-8" />
+    <title>Running Stats</title>
+    <meta name="description" content="A demo of Stripe client-only Checkout" />
+
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css" />
+    <!-- Load Stripe.js on your website. -->
     <script src="https://js.stripe.com/v3/"></script>
   </head>
+
   <body>
     <section>
       <div class="product">
@@ -15,15 +20,14 @@
           <h5>$15.00</h5>
         </div>
       </div>
-      <form action="/create-checkout-session" method="POST">
-        <button type="submit" id="checkout-button"
-        data-checkout-mode="payment"
-        data-price-id="price_1Kc3bKKSwycLvjxuGgbKFPZ8">Checkout</button>
-      </form>
+      <button
+      data-checkout-mode="payment"
+      data-price-id="price_1Kc2DKKSwycLvjxuBSGxrMTP">Checkout</button>
     </section>
+
     <script>
       // Replace with your own publishable key: https://dashboard.stripe.com/test/apikeys
-      var PUBLISHABLE_KEY = 'pk_live_51KZrErKSwycLvjxuCdpHKW4HRCMlmiCYCrprCqSeqg0wrsUUdosTGGfLNp0njq1VCYCB3Pi0cmcCU7aPvGr114k600k02f45rq';
+      var PUBLISHABLE_KEY = 'pk_test_51KZrErKSwycLvjxuvWkVJdhp9iVRadv2gumNAAh0wQwui3cUHBx3WDPEvEIHx6OWVqljW6KN0aUyZQsBsTlz64Fb00KoqCqTM8';
       // Replace with the domain you want your users to be redirected back to after payment
       var DOMAIN = location.href.replace(/[^/]*$/, '');
 
@@ -58,7 +62,7 @@
               successUrl:
                 DOMAIN + 'success.html?session_id={CHECKOUT_SESSION_ID}',
               cancelUrl:
-                DOMAIN + 'canceled.html?session_id={CHECKOUT_SESSION_ID}',
+                DOMAIN + 'cancel.html?session_id={CHECKOUT_SESSION_ID}',
             })
             .then(handleResult);
         });
